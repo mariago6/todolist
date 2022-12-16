@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {ContainerCard, Card} from './App.styled';
 import WriteForm from "./components/WriteForm";
-import ItemList from "./components/ItemList";
+import ItemList from "./components/ItemList/ItemList";
 
 function App() {
   const [currentTask, setCurrentTask] = useState(''); 
