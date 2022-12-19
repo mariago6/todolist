@@ -48,7 +48,10 @@ function App() {
       click={() => removeElement(index)} 
       isCompleted={task.completed}
       onChange={() => checkedElement(task.id)} 
+      onChange2={(e) => setCurrentEditTask(e.target.value)}
       onClick={() => setEditTasks(task.id)}
+      condition ={editTasks === task.id}
+      value={currentEditTask}
     />)
   })
 
