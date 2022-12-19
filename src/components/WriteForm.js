@@ -1,11 +1,11 @@
 import React from "react";
 
-function WriteForm({click, onChange}) {
+function WriteForm({click, onChange, value}) {
   return(
-    <div>
-      <input type='text' onChange={onChange}/>
-      <button type="button" onClick={click}>Add</button> 
-    </div>
+    <form onSubmit={click}>
+      <input type='text' onChange={onChange} value={value}/>
+      <button type="submit">Add</button> 
+    </form>
      
   )
 }

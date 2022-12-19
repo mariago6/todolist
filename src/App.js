@@ -6,11 +6,17 @@ import ItemList from "./components/ItemList/ItemList";
 
 function App() {
   const [currentTask, setCurrentTask] = useState(''); 
-  const [tasks, setTasks] = useState([]); 
- 
+  const [tasks, setTasks] = useState([]);
 
-  function taskList() {
-    setTasks([...tasks, currentTask])
+  function taskList(e) {
+    e.preventDefault(); 
+    setTasks([...tasks, 
+      {
+        id: new Date().getTime(),
+        text: currentTask,
+        completed: false
+      }]);
+    setCurrentTask(''); 
   }
 
   function clearTaskList() {
@@ -18,25 +24,26 @@ function App() {
   }
 
   function removeElement(i) {
-    let removeTask = tasks.splice(i, 1)
-    setTasks(tasks.filter(element => element !== removeTask))
+    let removeTask = tasks.splice(i, 1);
+    setTasks(tasks.filter(element => element !== removeTask));
+  }
+
+  function editElement(i) {
+
   }
 
   let items = tasks.map((task, index) => {
-    return(<ItemList key={index} id={index} name={task} value={task} item={task} click={() => removeElement(index)}/>)
+    return(<ItemList key={index} id={task.id} name={task.text} value={task.text} item={task.text} click={() => removeElement(index)} isCompleted={task.completed} />)
   })
 
   return (
     <div>
       <ContainerCard>
         <Card>
-          <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList}/>
+          <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
           <div className="d-flex ">
-            <button>{tasks.length} items</button>
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
             <button type="button" onClick={clearTaskList}>Clear all</button>
+            <p>{tasks.length} items</p>
           </div>
           <div>
             {items}

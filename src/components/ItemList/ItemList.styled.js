@@ -5,3 +5,7 @@ export const ItemRow = styled.div`
   justify-content: center; 
 
 `
+
+export const ItemLabel = styled.label`
+  text-decoration:${props => props.isSelected ? `line-through` : `none`};
+`

@@ -1,12 +1,12 @@
 import DeleteButton from "../Buttons/DeleteButton";
-import { ItemRow } from "./ItemList.styled";
+import { ItemRow, ItemLabel } from "./ItemList.styled";
 
-function ItemList({id, name, value, click, item, onChange}) {
+function ItemList({id, name, value, click, item, onChange, isCompleted}) {
   return(
     <ItemRow>
-      <input type='checkbox' id={id} name={name} value={value} onChange={onChange}/> {item}
+      <input type='checkbox' id={id} name={name} value={value} onChange={onChange}/> 
+      <ItemLabel isSelected={isCompleted}>{item}</ItemLabel>
       <DeleteButton onClick={click}/>
-      {/* <button type="button" onClick={click}>Delete</button> */}
     </ItemRow>
   )
 }
