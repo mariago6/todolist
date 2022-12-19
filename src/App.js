@@ -28,12 +28,25 @@ function App() {
     setTasks(tasks.filter(element => element !== removeTask));
   }
 
-  function editElement(i) {
-
+  function checkedElement(i) {
+    const updadtedTasks = [...tasks].map(task => {
+      if(task.id === i) {
+        task.completed = !task.completed
+      }
+      return task; 
+    });
+    setTasks(updadtedTasks); 
   }
 
   let items = tasks.map((task, index) => {
-    return(<ItemList key={index} id={task.id} name={task.text} value={task.text} item={task.text} click={() => removeElement(index)} isCompleted={task.completed} />)
+    return(<ItemList 
+      key={task.id} 
+      checked={task.completed}
+      item={task.text} 
+      click={() => removeElement(index)} 
+      isCompleted={task.completed}
+      onChange={() => checkedElement(task.id)} 
+    />)
   })
 
   return (
@@ -43,7 +56,7 @@ function App() {
           <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
           <div className="d-flex ">
             <button type="button" onClick={clearTaskList}>Clear all</button>
-            <p>{tasks.length} items</p>
+            <p>{tasks.length} {tasks.length <= 1 ? 'task' : 'tasks'}</p>
           </div>
           <div>
             {items}
