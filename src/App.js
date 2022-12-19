@@ -7,6 +7,8 @@ import ItemList from "./components/ItemList/ItemList";
 function App() {
   const [currentTask, setCurrentTask] = useState(''); 
   const [tasks, setTasks] = useState([]);
+  const [editTasks, setEditTasks] = useState(null); 
+  const [currentEditTask, setCurrentEditTask] = useState(''); 
 
   function taskList(e) {
     e.preventDefault(); 
@@ -46,6 +48,7 @@ function App() {
       click={() => removeElement(index)} 
       isCompleted={task.completed}
       onChange={() => checkedElement(task.id)} 
+      onClick={() => setEditTasks(task.id)}
     />)
   })
 
