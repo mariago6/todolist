@@ -15,3 +15,6 @@ export const Card = styled.div`
   position:absolute;
   top:30%; 
 `
+export const ClearButton = styled.button`
+
+`
