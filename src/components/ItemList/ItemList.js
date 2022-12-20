@@ -1,4 +1,5 @@
-import DeleteButton from "../Buttons/DeleteButton";
+import DeleteButton from "../Buttons/DeleteButton/DeleteButton";
+import EditButton from "../Buttons/EditButton/EditButton";
 import { ItemRow, ItemLabel } from "./ItemList.styled";
 
 function ItemList({checked, click, item, onChange, onChange2, isCompleted, onClick, condition, value}) {
@@ -10,7 +11,7 @@ function ItemList({checked, click, item, onChange, onChange2, isCompleted, onCli
         <ItemLabel isSelected={isCompleted}>{item}</ItemLabel>
         }
       <DeleteButton onClick={click}/>
-      <button type="submit" onClick={onClick}>Edit</button>
+      <EditButton type="submit" onClick={onClick} />
     </ItemRow>
   )
 }
