@@ -40,6 +40,18 @@ function App() {
     setTasks(updadtedTasks); 
   }
 
+  function editElement(i) {
+    const updadtedTasks = [...tasks].map(task => {
+      if(task.id === i) {
+        task.text = currentEditTask;
+      }
+      return task; 
+    });
+    setTasks(updadtedTasks);
+    setEditTasks(null);
+    setCurrentEditTask(''); 
+  }
+
   let items = tasks.map((task, index) => {
     return(<ItemList 
       key={task.id} 
@@ -49,7 +61,9 @@ function App() {
       isCompleted={task.completed}
       onChange={() => checkedElement(task.id)} 
       onChange2={(e) => setCurrentEditTask(e.target.value)}
-      onClick={() => setEditTasks(task.id)}
+      onClick={() => {setCurrentEditTask(task.text); setEditTasks(task.id)}}
+      onClick2={() => editElement(task.id)}
+      backClick={() => setEditTasks(null)}
       condition ={editTasks === task.id}
       value={currentEditTask}
     />)
