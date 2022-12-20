@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {ContainerCard, Card} from './App.styled';
 import WriteForm from "./components/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
@@ -68,6 +68,15 @@ function App() {
       value={currentEditTask}
     />)
   })
+
+  useEffect(() => { 
+    const loadedTasks = JSON.parse(localStorage.getItem('tasks')); 
+    loadedTasks && setTasks(loadedTasks); 
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks)); 
+  }, [tasks])
 
   return (
     <div>
