@@ -9,12 +9,14 @@ export const Card = styled.div`
   border: solid;
   border-color: transparent;
   border-radius: 15px; 
-  background-color: purple; 
-  width: 50%;
-  height: auto; 
+  background-color: #00FFAB;
+  color: black;  
+  width: 65%;
+  height: auto;
+  min-height: 400px;  
   position:absolute;
-  top:30%; 
+  top:15%; 
 `
 export const ClearButton = styled.button`
-
+  
 `
