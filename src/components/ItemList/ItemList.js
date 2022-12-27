@@ -1,12 +1,12 @@
 import DeleteButton from "../Buttons/DeleteButton/DeleteButton";
 import EditButton from "../Buttons/EditButton/EditButton";
 import SubmitEditButton from "../Buttons/SubmitEditButton/SubmitEditButton";
-import { ItemRow, ItemLabel } from "./ItemList.styled";
+import { ItemRow, ItemLabel, CheckBoxButton } from "./ItemList.styled";
 
 function ItemList({checked, click, item, onChange, onChange2, isCompleted, onClick, onClick2, backClick, condition, value}) {
   return(
     <ItemRow>
-      <input type='checkbox' checked={checked} onChange={onChange}/> 
+      <CheckBoxButton type='checkbox' checked={checked} onChange={onChange}/> 
       {condition ? 
         <input type='text' onChange={onChange2} value={value}/> :
         <ItemLabel isSelected={isCompleted}>{item}</ItemLabel>

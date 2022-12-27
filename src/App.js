@@ -83,13 +83,15 @@ function App() {
       <ContainerCard>
         <Card>
           <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
-          <div className="d-flex ">
-            <button type="button" onClick={clearTaskList}>Clear all</button>
-            <p>{tasks.length} {tasks.length <= 1 ? 'task' : 'tasks'}</p>
+          <div className="d-flex">
+            <p> Total tasks: {tasks.length} </p>
+            <p> Tasks to do: {tasks.filter(task => task.completed === false).length}</p>
+            <p> Tasks done: {tasks.filter(task => task.completed === true).length}</p>
           </div>
           <div>
             {items}
           </div>
+          <button type="button" onClick={clearTaskList}>Clear all</button>
         </Card>
       </ContainerCard>
     </div>
