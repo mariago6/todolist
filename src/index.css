@@ -56,4 +56,5 @@ body {
   -moz-animation-timing-function: linear;
   -o-animation-timing-function: linear;
   animation-timing-function: linear;
+  font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; 
 }

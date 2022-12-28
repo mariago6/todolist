@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {ContainerCard, Card} from './App.styled';
-import WriteForm from "./components/WriteForm";
+import {ContainerCard, Card, CountTasks, ClearButton} from './App.styled';
+import WriteForm from "./components/WriteForm/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
 
 function App() {
@@ -83,15 +83,20 @@ function App() {
       <ContainerCard>
         <Card>
           <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
-          <div className="d-flex">
-            <p> Total tasks: {tasks.length} </p>
-            <p> Tasks to do: {tasks.filter(task => task.completed === false).length}</p>
-            <p> Tasks done: {tasks.filter(task => task.completed === true).length}</p>
-          </div>
+          <CountTasks>
+            <p> <strong>Total tasks: {tasks.length} </strong></p>
+            <p> <strong>Tasks to do: {tasks.filter(task => task.completed === false).length}</strong></p>
+            <p> <strong>Tasks done: {tasks.filter(task => task.completed === true).length}</strong></p>
+          </CountTasks>
+          {/* <ListGroup horizontal className="detailsCardListGroup">
+            <ListGroup.Item> Total tasks: {tasks.length}</ListGroup.Item>
+            <ListGroup.Item> Tasks to do: {tasks.filter(task => task.completed === false).length}</ListGroup.Item>
+            <ListGroup.Item>Tasks done: {tasks.filter(task => task.completed === true).length}</ListGroup.Item>
+          </ListGroup> */}
           <div>
             {items}
           </div>
-          <button type="button" onClick={clearTaskList}>Clear all</button>
+          <ClearButton type="button" onClick={clearTaskList}>Clear all</ClearButton>
         </Card>
       </ContainerCard>
     </div>
