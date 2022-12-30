@@ -1,14 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {ContainerCard, Card, CountTasks, ClearButton} from './App.styled';
+import {ContainerCard, Card, ClearButton} from './App.styled';
 import WriteForm from "./components/WriteForm/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
+import './index.css';
+import TabTasks from "./components/TabTasks/TabTasks";
+import { motion } from "framer-motion";
 
 function App() {
   const [currentTask, setCurrentTask] = useState(''); 
   const [tasks, setTasks] = useState([]);
   const [editTasks, setEditTasks] = useState(null); 
   const [currentEditTask, setCurrentEditTask] = useState(''); 
+  const [currentTab, setCurrentTab] = useState('1');
 
   function taskList(e) {
     e.preventDefault(); 
@@ -52,21 +56,65 @@ function App() {
     setCurrentEditTask(''); 
   }
 
-  let items = tasks.map((task, index) => {
-    return(<ItemList 
-      key={task.id} 
-      checked={task.completed}
-      item={task.text} 
-      click={() => removeElement(index)} 
-      isCompleted={task.completed}
-      onChange={() => checkedElement(task.id)} 
-      onChange2={(e) => setCurrentEditTask(e.target.value)}
-      onClick={() => {setCurrentEditTask(task.text); setEditTasks(task.id)}}
-      onClick2={() => editElement(task.id)}
-      backClick={() => setEditTasks(null)}
-      condition ={editTasks === task.id}
-      value={currentEditTask}
-    />)
+  const handleTabClick = (e) => {
+    setCurrentTab(e.target.id);
+}
+
+  let totalItems = tasks.map((task, index) => {
+    return(
+      <ItemList 
+        key={task.id} 
+        checked={task.completed}
+        item={task.text} 
+        click={() => removeElement(index)} 
+        isCompleted={task.completed}
+        onChange={() => checkedElement(task.id)} 
+        onChange2={(e) => setCurrentEditTask(e.target.value)}
+        onClick={() => {setCurrentEditTask(task.text); setEditTasks(task.id)}}
+        onClick2={() => editElement(task.id)}
+        backClick={() => setEditTasks(null)}
+        condition ={editTasks === task.id}
+        value={currentEditTask}
+      />
+    )
+  })
+
+  let toDoItems = tasks.filter(task => task.completed === false).map((task, index) => {
+    return(
+      <ItemList 
+        key={task.id} 
+        checked={task.completed}
+        item={task.text} 
+        click={() => removeElement(index)} 
+        isCompleted={task.completed}
+        onChange={() => checkedElement(task.id)} 
+        onChange2={(e) => setCurrentEditTask(e.target.value)}
+        onClick={() => {setCurrentEditTask(task.text); setEditTasks(task.id)}}
+        onClick2={() => editElement(task.id)}
+        backClick={() => setEditTasks(null)}
+        condition ={editTasks === task.id}
+        value={currentEditTask}
+      />
+    )
+  })
+
+  let doneItems = tasks.filter(task => task.completed === true).map((task, index) => {
+    return(
+      <ItemList 
+        key={task.id} 
+        checked={task.completed}
+        item={task.text} 
+        click={() => removeElement(index)} 
+        isCompleted={task.completed}
+        onChange={() => checkedElement(task.id)} 
+        onChange2={(e) => setCurrentEditTask(e.target.value)}
+        onClick={() => {setCurrentEditTask(task.text); setEditTasks(task.id)}}
+        onClick2={() => editElement(task.id)}
+        backClick={() => setEditTasks(null)}
+        condition ={editTasks === task.id}
+        value={currentEditTask}
+      />
+    )
   })
 
   useEffect(() => { 
@@ -83,20 +131,22 @@ function App() {
       <ContainerCard>
         <Card>
           <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
-          <CountTasks>
-            <p> <strong>Total tasks: {tasks.length} </strong></p>
-            <p> <strong>Tasks to do: {tasks.filter(task => task.completed === false).length}</strong></p>
-            <p> <strong>Tasks done: {tasks.filter(task => task.completed === true).length}</strong></p>
-          </CountTasks>
-          {/* <ListGroup horizontal className="detailsCardListGroup">
-            <ListGroup.Item> Total tasks: {tasks.length}</ListGroup.Item>
-            <ListGroup.Item> Tasks to do: {tasks.filter(task => task.completed === false).length}</ListGroup.Item>
-            <ListGroup.Item>Tasks done: {tasks.filter(task => task.completed === true).length}</ListGroup.Item>
-          </ListGroup> */}
+          <TabTasks 
+            totaltasks={tasks.length} 
+            todotasks={tasks.filter(task => task.completed === false).length} 
+            donetasks={tasks.filter(task => task.completed === true).length}
+            onClick={handleTabClick}
+            disabled1={currentTab === '1' && true}
+            disabled2={currentTab === '2' && true}
+            disabled3={currentTab === '3' && true}
+          />
           <div>
-            {items}
+            {currentTab === '1' && totalItems}
+            {currentTab === '2' && toDoItems}
+            {currentTab === '3' && doneItems}
           </div>
           <ClearButton type="button" onClick={clearTaskList}>Clear all</ClearButton>
+          
         </Card>
       </ContainerCard>
     </div>

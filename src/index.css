@@ -58,3 +58,21 @@ body {
   animation-timing-function: linear;
   font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; 
 }
+
+.show-enter {
+  opacity: 0;
+  transform: translateY(20%);
+}
+.show-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.show-exit {
+  opacity: 1;
+}
+.show-exit-active {
+  opacity: 0;
+  transform: translateY(20%);
+  transition: opacity 300ms, transform 300ms;
+}

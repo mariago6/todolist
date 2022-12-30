@@ -5,4 +5,5 @@ export const ButtonEdit = styled.button`
   background-color: transparent; 
   border: none; 
   cursor: pointer;
+  font-size: 18px;
 `

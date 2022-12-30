@@ -13,25 +13,20 @@ export const Card = styled.div`
   height: auto;
   min-height: 400px;  
   position: relative;
-  top:-100px; 
+  top:-160px; 
   padding: 20px; 
 `
 export const ClearButton = styled.button`
   background-color: #286953;
-  padding-left: 40px; 
-  padding-right: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px; 
+  padding-left: 30px; 
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px; 
   border-radius: 40px; 
   border: none;
   margin-left: 5px; 
   cursor: pointer;
   color: white; 
-  font-size: 22px; 
+  font-size: 18px; 
   font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; 
-`
-
-export const CountTasks = styled.div`
-  display: flex;
-  justify-content: space-around; 
 `
