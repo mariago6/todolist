@@ -6,4 +6,9 @@ export const RemoveButton = styled.button`
   border: none; 
   cursor: pointer;
   font-size: 18px;
+
+  &:hover {
+    color: #00FFAB;
+    font-weight: bold; 
+  }
 `

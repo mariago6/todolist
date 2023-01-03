@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AddButton = styled.button`
-  background-color: #286953;
+  background-color: #3C4048;
   padding-left: 30px; 
   padding-right: 30px;
   padding-top: 5px;
@@ -13,6 +13,14 @@ export const AddButton = styled.button`
   color: white; 
   font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; 
   font-size: 15px; 
+
+  &:hover {
+    border: solid;
+    border-color: #3C4048;
+    color: #3C4048;
+    background-color: #00FFAB;
+    font-weight: bold; 
+  }
 `
 
 export const WriteTaskInput = styled.input`

@@ -1,7 +1,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Exo:100);
 
-@-webkit-keyframes bg-scrolling-reverse {
+/* @-webkit-keyframes bg-scrolling-reverse {
   100% {
     background-position: 50px 50px;
   }
@@ -40,14 +40,16 @@
   0% {
     background-position: 50px 50px;
   }
-}
+} */
 
 body {
-  margin-top: 13.5rem;
+  /* margin-top: 13.5rem; */
+  margin: 0px; 
   color: #999;
   font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
   text-align: center;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  /* background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0; */
+  /* background-color: #3C4048; */
   -webkit-animation: bg-scrolling-reverse .92s infinite;
   -moz-animation: bg-scrolling-reverse .92s infinite;
   -o-animation: bg-scrolling-reverse .92s infinite;

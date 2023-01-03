@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {ContainerCard, Card, ClearButton} from './App.styled';
+import {Container, ContainerCard, Card, ClearButton, TitleApp} from './App.styled';
 import WriteForm from "./components/WriteForm/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
 import './index.css';
 import TabTasks from "./components/TabTasks/TabTasks";
+import Themes from "./components/Themes/Themes";
+import { ThemeProvider } from "styled-components";
 import { motion } from "framer-motion";
 
 function App() {
@@ -16,17 +18,18 @@ function App() {
 
   function taskList(e) {
     e.preventDefault(); 
-    setTasks([...tasks, 
-      {
-        id: new Date().getTime(),
-        text: currentTask,
-        completed: false
-      }]);
+    setTasks(prevTasks => [ {
+          id: new Date().getTime(),
+          text: currentTask,
+          completed: false
+        }, ...prevTasks])
     setCurrentTask(''); 
   }
 
-  function clearTaskList() {
-    setTasks([]); 
+  function clearDoneTasks() {
+     let filterToDoTasks;
+     filterToDoTasks = tasks.filter(task => task.completed === false); 
+     setTasks(filterToDoTasks); 
   }
 
   function removeElement(i) {
@@ -128,27 +131,33 @@ function App() {
 
   return (
     <div>
-      <ContainerCard>
-        <Card>
-          <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
-          <TabTasks 
-            totaltasks={tasks.length} 
-            todotasks={tasks.filter(task => task.completed === false).length} 
-            donetasks={tasks.filter(task => task.completed === true).length}
-            onClick={handleTabClick}
-            disabled1={currentTab === '1' && true}
-            disabled2={currentTab === '2' && true}
-            disabled3={currentTab === '3' && true}
-          />
-          <div>
-            {currentTab === '1' && totalItems}
-            {currentTab === '2' && toDoItems}
-            {currentTab === '3' && doneItems}
-          </div>
-          <ClearButton type="button" onClick={clearTaskList}>Clear all</ClearButton>
-          
-        </Card>
-      </ContainerCard>
+      <ThemeProvider theme={Themes['dark']}>
+        
+      <Container>
+        <TitleApp>To do list</TitleApp>
+        <ContainerCard>
+          <Card>
+            <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
+            <TabTasks 
+              totaltasks={tasks.length} 
+              todotasks={tasks.filter(task => task.completed === false).length} 
+              donetasks={tasks.filter(task => task.completed === true).length}
+              onClick={handleTabClick}
+              disabled1={currentTab === '1' && true}
+              disabled2={currentTab === '2' && true}
+              disabled3={currentTab === '3' && true}
+            />
+            <div>
+              {currentTab === '1' && totalItems}
+              {currentTab === '2' && toDoItems}
+              {currentTab === '3' && doneItems}
+            </div>
+            <ClearButton type="button" onClick={()=> setTasks([])}>Clear all</ClearButton>
+            <ClearButton type="button" onClick={clearDoneTasks} >Clear all done</ClearButton>
+          </Card>
+        </ContainerCard>
+      </Container>
+      </ThemeProvider>
     </div>
   );
 }
