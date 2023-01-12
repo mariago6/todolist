@@ -1,13 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {Container, ContainerCard, Card, ClearButton, TitleApp} from './App.styled';
+import {Container, ContainerCard, Card, ClearButton, TitleApp, Sun, SunButton} from './App.styled';
 import WriteForm from "./components/WriteForm/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
 import './index.css';
 import TabTasks from "./components/TabTasks/TabTasks";
-import Themes from "./components/Themes/Themes";
 import { ThemeProvider } from "styled-components";
+import {BsSun, BsFillMoonFill} from 'react-icons/bs';
 import { motion } from "framer-motion";
+
+const darkTheme = {
+  title: 'white',
+  body: '#3C4048'
+}
+const lightTheme = {
+  title: '#3C4048',
+  body: 'white'
+}
 
 function App() {
   const [currentTask, setCurrentTask] = useState(''); 
@@ -15,6 +24,7 @@ function App() {
   const [editTasks, setEditTasks] = useState(null); 
   const [currentEditTask, setCurrentEditTask] = useState(''); 
   const [currentTab, setCurrentTab] = useState('1');
+  const [theme, setTheme] = useState("dark");
 
   function taskList(e) {
     e.preventDefault(); 
@@ -127,16 +137,20 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks)); 
-  }, [tasks])
+  }, [tasks]);
 
+  function toggleTheme() {
+    setTheme((current) => current === 'light' ? 'dark' : 'light')
+  }
   return (
-    <div>
-      <ThemeProvider theme={Themes['dark']}>
-        
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Container>
         <TitleApp>To do list</TitleApp>
         <ContainerCard>
           <Card>
+            <Sun>
+              <SunButton type="button" onClick={toggleTheme}>{theme === 'light' ? <BsFillMoonFill /> : <BsSun />}</SunButton>
+            </Sun>
             <WriteForm onChange={(e) => setCurrentTask(e.target.value)} click={taskList} value={currentTask}/>
             <TabTasks 
               totaltasks={tasks.length} 
@@ -157,8 +171,7 @@ function App() {
           </Card>
         </ContainerCard>
       </Container>
-      </ThemeProvider>
-    </div>
+    </ThemeProvider>
   );
 }
 

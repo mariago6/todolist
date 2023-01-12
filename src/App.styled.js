@@ -11,20 +11,21 @@ export const TitleApp = styled.h1`
   grid-template-rows: 27px 0;
   grid-gap: 20px;
   align-items: center;
-  color: #00FFAB; 
+  //color: white; 
+  color: ${(props) => props.theme.title}; 
   
   &:after {
     content: " ";
     display: block;
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
+    border-bottom: 1px solid ${(props) => props.theme.title};
+    border-top: 1px solid ${(props) => props.theme.title};
     height: 5px;
   }
   &:before {
     content: " ";
     display: block;
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
+    border-bottom: 1px solid ${(props) => props.theme.title};
+    border-top: 1px solid ${(props) => props.theme.title};
     height: 5px;
   }
 `
@@ -32,7 +33,8 @@ export const TitleApp = styled.h1`
 export const Container = styled.div`
   display:flex; 
   flex-direction: column;
-  background-color: #3C4048;
+  // background-color: #3C4048;
+  background-color: ${(props) => props.theme.body};
   position:absolute;
   top:0px;
   right:0px;
@@ -56,6 +58,7 @@ export const Card = styled.div`
   //top: 30px; 
   padding: 20px; 
   margin-bottom: 50px; 
+  box-shadow: 5px 5px 10px;
 `
 export const ClearButton = styled.button`
   background-color: #3C4048;
@@ -74,10 +77,26 @@ export const ClearButton = styled.button`
   min-width: 150px; 
 
   &:hover {
-    border: solid;
-    border-color: #3C4048;
+    border: solid 2px #3C4048;
     color: #3C4048;
     background-color: #00FFAB;
     font-weight: bold; 
   }
+`
+
+export const Sun = styled.div`
+  display: flex; 
+  justify-content: end; 
+  margin-top: -5px; 
+  font-size: 30px;
+  border: none;
+  background-color: transparent; 
+  cursor: pointer; 
+`
+
+export const SunButton = styled.button`
+  font-size: 30px;
+  border: none;
+  background-color: transparent; 
+  cursor: pointer; 
 `

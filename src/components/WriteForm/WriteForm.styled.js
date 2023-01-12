@@ -15,8 +15,7 @@ export const AddButton = styled.button`
   font-size: 15px; 
 
   &:hover {
-    border: solid;
-    border-color: #3C4048;
+    border: solid 2px #3C4048;
     color: #3C4048;
     background-color: #00FFAB;
     font-weight: bold; 
