@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import {Container, ContainerCard, Card, ClearButton, TitleApp, Sun, SunButton} from './App.styled';
+import {GlobalStyle, Container, ContainerCard, Card, ClearButton, TitleApp, Sun, SunButton} from './App.styled';
 import WriteForm from "./components/WriteForm/WriteForm";
 import ItemList from "./components/ItemList/ItemList";
 import './index.css';
 import TabTasks from "./components/TabTasks/TabTasks";
 import { ThemeProvider } from "styled-components";
 import {BsSun, BsFillMoonFill} from 'react-icons/bs';
-import { motion } from "framer-motion";
+
 
 const darkTheme = {
   title: 'white',
@@ -73,10 +73,15 @@ function App() {
     setCurrentTab(e.target.id);
 }
 
+  function toggleTheme() {
+    setTheme((current) => current === 'light' ? 'dark' : 'light')
+  }
+
   let totalItems = tasks.map((task, index) => {
     return(
       <ItemList 
         key={task.id} 
+        layoutId={task.id} 
         checked={task.completed}
         item={task.text} 
         click={() => removeElement(index)} 
@@ -96,6 +101,7 @@ function App() {
     return(
       <ItemList 
         key={task.id} 
+        layoutId={task.id} 
         checked={task.completed}
         item={task.text} 
         click={() => removeElement(index)} 
@@ -115,6 +121,7 @@ function App() {
     return(
       <ItemList 
         key={task.id} 
+        layoutId={task.id} 
         checked={task.completed}
         item={task.text} 
         click={() => removeElement(index)} 
@@ -139,11 +146,10 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tasks)); 
   }, [tasks]);
 
-  function toggleTheme() {
-    setTheme((current) => current === 'light' ? 'dark' : 'light')
-  }
+  
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
       <Container>
         <TitleApp>To do list</TitleApp>
         <ContainerCard>

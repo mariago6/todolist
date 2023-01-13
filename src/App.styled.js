@@ -1,4 +1,11 @@
 import styled from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props) => props.theme.body};
+  }
+`
 
 export const TitleApp = styled.h1`
   text-align: center;
@@ -34,13 +41,13 @@ export const Container = styled.div`
   display:flex; 
   flex-direction: column;
   // background-color: #3C4048;
-  background-color: ${(props) => props.theme.body};
-  position:absolute;
-  top:0px;
-  right:0px;
-  bottom:0px;
-  left:0px;
-  height: 100%;
+  
+  position:relative;
+  // top:0px;
+  // right:0px;
+  // bottom:100%;
+  // left:0px;
+  //height: 100%;
 `
 export const ContainerCard = styled.div`
   display: flex;
